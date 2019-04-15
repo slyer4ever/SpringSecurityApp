@@ -56,6 +56,10 @@ public class SpringSecurityApplication implements CommandLineRunner {
 		compte2.setPassword(bCryptPasswordEncoder.encode(compte2.getPassword()));
 		
 		
+		Compte compte3=new Compte("AAA","123","USER",null);
+		compte3.setPassword(bCryptPasswordEncoder.encode(compte3.getPassword()));
+		
+		
 		
 		etudiantRepository.save(e1);
 		logger.info("Etudiant e1 enregisté"+e1);
@@ -65,6 +69,7 @@ public class SpringSecurityApplication implements CommandLineRunner {
 		coursesRepository.save(c2);
 		compteRepository.save(compte);
 		compteRepository.save(compte2);
+		compteRepository.save(compte3);
 		
 		
 	}
