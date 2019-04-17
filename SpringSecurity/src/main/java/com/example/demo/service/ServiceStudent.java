@@ -45,7 +45,7 @@ public class ServiceStudent {
 		
 		Etudiant ReturnedEtudiant =etudiantRepository.save(et);
 		
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		/*Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
 
 		 if (principal instanceof UserDetails) {
@@ -80,7 +80,7 @@ public class ServiceStudent {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			}
+			}*/
 		
 		return ReturnedEtudiant ;
 	}
