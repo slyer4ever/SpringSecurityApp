@@ -1,6 +1,10 @@
 package com.example.demo.service;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.management.RuntimeErrorException;
 
@@ -38,6 +42,29 @@ public class ServiceStudent {
 		
 	}
 
+/*	
+	public List<Map<Long,Map<String, Object>>> returnEtudiantByCP()
+	{
+		return etudiantRepository.findAllEtudiantJoinCours().stream().map(e->{
+			
+			Map<Long,Map<String, Object>> mapTmp = new HashMap<Long,Map<String, Object>>();
+			
+			Long idTmp;
+			
+			for (Map.Entry<String, Object> IterMap : e.entrySet()) {
+				
+				IterMap.getValue().
+				
+			}
+			
+			
+			
+		});
+		
+	}
+	*/
+	
+	
 	
 	public Etudiant SaveStudent(Etudiant et)
 	{
@@ -84,6 +111,30 @@ public class ServiceStudent {
 		
 		return ReturnedEtudiant ;
 	}
+	
+	
+public List<Map<Long,Map<String, Object>>> findAllEtudiantJoinCours() {
+		
+		
+		
+		
+		return etudiantRepository.findAll().stream().map(e->{
+			Map<String, Object> mapEtudiant= new LinkedHashMap<String, Object>();
+			mapEtudiant.put("Nom",e.getNom());
+			mapEtudiant.put("Prenom",e.getPrenom());
+			mapEtudiant.put("Date de naissance",e.getDateNaissance());
+			mapEtudiant.put("Cours:",e.getCourses());
+			
+			Map<Long,Map<String, Object>> idMapEtudiant = new LinkedHashMap<Long,Map<String, Object>>();
+			idMapEtudiant.put(e.getId_etudiant(),mapEtudiant);
+			return idMapEtudiant;
+			
+		}).collect(Collectors.toList());
+		
+		
+		
+	}
+	
 	
 	
 }

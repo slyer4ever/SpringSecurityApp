@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
@@ -19,6 +20,7 @@ import com.example.demo.Repository.CoursesRepository;
 import com.example.demo.Repository.EtudiantRepository;
 import com.example.demo.dao.Cours;
 import com.example.demo.dao.Etudiant;
+
 import com.example.demo.service.ServiceStudent;
 
 @RestController
@@ -42,6 +44,14 @@ public class Controller {
 	{
 	
 		return serviceStudent.FindAllEtudiants();
+		
+	}
+	
+	
+	@GetMapping("/EtudiantByCP")
+	public List<Map<Long, Map<String, Object>>> returnEtudiantByCP()
+	{
+		return serviceStudent.findAllEtudiantJoinCours();
 		
 	}
 	
