@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.dao.Etudiant;
 
 @Repository
-public interface EtudiantRepository extends JpaRepository<Etudiant, Long>{
+public interface EtudiantRepository extends JpaRepository<Etudiant, Long>,EtudiantRepositoryCustom{
 	
 	
 

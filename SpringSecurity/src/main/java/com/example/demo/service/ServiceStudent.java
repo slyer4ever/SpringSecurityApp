@@ -118,18 +118,7 @@ public List<Map<Long,Map<String, Object>>> findAllEtudiantJoinCours() {
 		
 		
 		
-		return etudiantRepository.findAll().stream().map(e->{
-			Map<String, Object> mapEtudiant= new LinkedHashMap<String, Object>();
-			mapEtudiant.put("Nom",e.getNom());
-			mapEtudiant.put("Prenom",e.getPrenom());
-			mapEtudiant.put("Date de naissance",e.getDateNaissance());
-			mapEtudiant.put("Cours:",e.getCourses());
-			
-			Map<Long,Map<String, Object>> idMapEtudiant = new LinkedHashMap<Long,Map<String, Object>>();
-			idMapEtudiant.put(e.getId_etudiant(),mapEtudiant);
-			return idMapEtudiant;
-			
-		}).collect(Collectors.toList());
+		return etudiantRepository.findAllEtudiantJoinCours();
 		
 		
 		
