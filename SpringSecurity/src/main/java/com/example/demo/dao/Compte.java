@@ -7,12 +7,14 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,7 +31,8 @@ import lombok.NoArgsConstructor;
 @Entity
 
 @Data
-public class Compte implements UserDetails  {
+@EntityListeners(AuditingEntityListener.class)
+public class Compte extends Auditable implements UserDetails  {
 	
 	private static final long serialVersionUID = 1L;
 	

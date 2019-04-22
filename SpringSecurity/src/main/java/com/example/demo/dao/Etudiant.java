@@ -30,8 +30,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @EqualsAndHashCode(exclude="Courses")
 @Data
-@EntityListeners(AuditingEntityListener.class)
-public class Etudiant extends Auditable<String> {
+
+public class Etudiant  {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	 @Column(name = "id_etudiant")

@@ -17,17 +17,17 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 
-public abstract class Auditable<U> {
+public abstract class Auditable {
 
     @CreatedBy
-    protected String createdBy;
+    protected Compte createdBy;
 
     @CreatedDate
     @Temporal(TemporalType.DATE)
     protected Date creationDate;
 
     @LastModifiedBy
-    protected String lastModifiedBy;
+    protected Compte lastModifiedBy;
 
     @LastModifiedDate
     @Temporal(TemporalType.DATE)
