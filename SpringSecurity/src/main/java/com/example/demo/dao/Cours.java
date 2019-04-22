@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.data.annotation.CreatedDate;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
@@ -25,7 +27,7 @@ public class Cours {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id_cours;
 	private String nom_cours;
-	private int duree_cours;
+	@CreatedDate private int duree_cours;
 
 	
     @ManyToOne

@@ -7,11 +7,15 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -26,7 +30,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @EqualsAndHashCode(exclude="Courses")
 @Data
-public class Etudiant {
+@EntityListeners(AuditingEntityListener.class)
+public class Etudiant extends Auditable<String> {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	 @Column(name = "id_etudiant")

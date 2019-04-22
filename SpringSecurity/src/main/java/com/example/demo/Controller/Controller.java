@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -84,6 +85,15 @@ public class Controller {
 	public Etudiant findEtudiantById(@PathVariable Long id)
 	{
 		return etudiantRepository.findById(id).orElseThrow(()->new EtudiantNotFound(id));
+		
+	}
+	
+	
+
+	@GetMapping("/etudiantss")
+	public List<Etudiant> findEtudiants()
+	{
+		return etudiantRepository.findAll();
 		
 	}
 	
