@@ -15,13 +15,13 @@ import com.example.demo.dao.Compte;
 import ch.qos.logback.classic.Logger;
 
 @Component
-public class EtudiantAuditorAwareImpl implements AuditorAware<Compte> {
+public class EtudiantAuditorAwareImpl implements AuditorAware<String> {
 
 	 final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Override
-	public Optional<Compte> getCurrentAuditor() {
-	/*	
+	public Optional<String> getCurrentAuditor() {
+	
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null || !authentication.isAuthenticated()) {
@@ -37,20 +37,23 @@ public class EtudiantAuditorAwareImpl implements AuditorAware<Compte> {
         logger.info("User Name : "+username);
         logger.info("*****************");
         logger.info("*****************");
+	
+        return Optional.of(((Compte) authentication.getPrincipal()).getUsername());
+	}
+}
 		
-        return Optional.of(((Compte) authentication.getPrincipal()).getUsername());*/
-		
+		/*
 		   return Optional.ofNullable(SecurityContextHolder.getContext())
 					  .map(SecurityContext::getAuthentication)
 					  .filter(Authentication::isAuthenticated)
 					  .map(Authentication::getPrincipal)
 					  .map(Compte.class::cast);
-		  }
+		  }*/
 		
 		
 		
 		
-	}
+	
 	
 	
 	

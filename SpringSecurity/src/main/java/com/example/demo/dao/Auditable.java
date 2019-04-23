@@ -20,19 +20,54 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 public abstract class Auditable {
 
     @CreatedBy
-    protected Compte createdBy;
+    protected String createdBy;
 
     @CreatedDate
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     protected Date creationDate;
 
     @LastModifiedBy
-    protected Compte lastModifiedBy;
+    protected String lastModifiedBy;
 
     @LastModifiedDate
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     protected Date lastModifiedDate;
 
-    // Getters and Setters
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	public Date getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Date lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
+    
+    
+    
+
+  
 
 }

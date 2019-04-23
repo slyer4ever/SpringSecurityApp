@@ -1,5 +1,6 @@
 package com.example.demo.dao;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
@@ -31,8 +32,12 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(exclude="Courses")
 @Data
 
-public class Etudiant  {
+public class Etudiant implements Serializable  {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	 @Column(name = "id_etudiant")
 	private  Long id_etudiant;

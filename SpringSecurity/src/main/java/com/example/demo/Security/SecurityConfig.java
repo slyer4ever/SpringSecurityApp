@@ -27,18 +27,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			
 		
 		
-			http.csrf().disable().authorizeRequests()
-		.antMatchers("/*").authenticated()
+		/*	http.csrf().disable().authorizeRequests()
+		.antMatchers("/*").authenticated();
 		.antMatchers("/**").access("hasRole('ROLE_ADMIN')")
 		.antMatchers("/All_ET").hasAuthority("ADMIN")
-		.antMatchers("/**").hasAnyAuthority("ADMIN","USER")
-		//.antMatchers("/**").permitAll()
+		.antMatchers("/**").hasAnyAuthority("ADMIN","USER");
+		.antMatchers("/**").permitAll()
 		.and()
-		.formLogin();
+		.formLogin();*/
 			
-		/*	http.csrf().disable()
+			http.csrf().disable()
             .authorizeRequests().anyRequest().authenticated()
-            .and().httpBasic();*/
+            .and().httpBasic();
 	
 		}
 		

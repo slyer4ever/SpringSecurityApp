@@ -8,6 +8,9 @@ import org.springframework.hateoas.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,8 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.AspectJ.TrackTime;
 import com.example.demo.Exception.EtudiantNotFound;
+import com.example.demo.Repository.CompteRepository;
 import com.example.demo.Repository.CoursesRepository;
 import com.example.demo.Repository.EtudiantRepository;
+import com.example.demo.dao.Compte;
 import com.example.demo.dao.Cours;
 import com.example.demo.dao.Etudiant;
 
@@ -27,7 +32,8 @@ import com.example.demo.service.ServiceStudent;
 @RestController
 public class Controller {
 	
-	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	@Autowired
 	CoursesRepository coursesRepository;
 	
@@ -36,6 +42,10 @@ public class Controller {
 	
 	@Autowired
 	ServiceStudent serviceStudent;
+	
+	
+	@Autowired
+	CompteRepository compteRepository;
 	
 	
 	@TrackTime
@@ -98,6 +108,48 @@ public class Controller {
 	}
 	
 	
+	
+	@GetMapping("/comptes")
+	public List<Compte> findComptes()
+	{
+		return compteRepository.findAll();
+		
+	}
+	
+	
+	@GetMapping("/CurrentUser")
+	public String currentUser() {
+		
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+
+		 if (principal instanceof UserDetails) {
+			
+			
+			return ((UserDetails)principal).getUsername();
+				 
+		 }else
+		 {
+			 
+			 return "VOID";
+			 
+		 }
+		
+	}
+	
+	
+	
+	@PostMapping(value="/AddAccount")
+	@ResponseStatus(code=HttpStatus.ACCEPTED)
+	public Compte AddAccount(@RequestBody Compte compte)
+	{
+		
+		Compte tmp =  new Compte(compte.getUsername(),compte.getPassword(),compte.getRole(),null);
+		//new Compte("bbb","123","ADMIN",null);
+		tmp.setPassword(bCryptPasswordEncoder.encode(tmp.getPassword()));
+		return compteRepository.save(tmp);		
+	}
 	
 	
 	
