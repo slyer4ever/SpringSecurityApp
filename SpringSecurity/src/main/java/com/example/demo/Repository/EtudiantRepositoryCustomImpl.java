@@ -11,7 +11,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Root;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
@@ -35,8 +38,26 @@ public class EtudiantRepositoryCustomImpl implements EtudiantRepositoryCustom {
 	public List<Map<Long, Map<String, Object>>> findAllEtudiantJoinCours() {
 		
 		
-		CriteriaQuery<Etudiant> criteriaQuery = em.getCriteriaBuilder().createQuery(Etudiant.class);
-		criteriaQuery.select(criteriaQuery.from(Etudiant.class));
+		
+		CriteriaBuilder builder =  em.getCriteriaBuilder();
+		CriteriaQuery<Etudiant> criteriaQuery =builder.createQuery(Etudiant.class);
+		Root<Etudiant> root= criteriaQuery.from(Etudiant.class);
+		Path<String> Nom_ET =root.<String> get("Nom");
+		criteriaQuery.select(root).where(
+				builder.or(
+				builder.equal(Nom_ET, "Jhon"),
+				builder.equal(Nom_ET, "Nidal")
+				)
+			
+				
+				);
+		
+	
+	/*	criteriaQuery.select(criteriaQuery.from(Etudiant.class)).where(
+				builder.equal(root.get("Nom"), "Jhon")
+				
+				
+				);*/
 		return em.createQuery(criteriaQuery).getResultList().stream().map(e->{
 			Map<String, Object> mapEtudiant= new LinkedHashMap<String, Object>();
 			mapEtudiant.put("Nom",e.getNom());
