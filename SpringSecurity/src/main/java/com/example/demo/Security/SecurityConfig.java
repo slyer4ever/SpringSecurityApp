@@ -26,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		protected void configure(HttpSecurity http) throws Exception {
 			
 		
+
 		/*
 			 http.httpBasic()
 	            .and()
@@ -36,16 +37,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			
 			http.csrf().disable().authorizeRequests()
 		.antMatchers("/*").authenticated()
+=======
+		
+		/*	http.csrf().disable().authorizeRequests()
+		.antMatchers("/*").authenticated();
+>>>>>>> 807c4cb72ca5f2aa8d9384eac5a8aab86870eb38
 		.antMatchers("/**").access("hasRole('ROLE_ADMIN')")
 		.antMatchers("/All_ET").hasAuthority("ADMIN")
-		.antMatchers("/**").hasAnyAuthority("ADMIN","USER")
-		//.antMatchers("/**").permitAll()
+		.antMatchers("/**").hasAnyAuthority("ADMIN","USER");
+		.antMatchers("/**").permitAll()
 		.and()
 		.formLogin();*/
 			
-		/*	http.csrf().disable()
+			http.csrf().disable()
             .authorizeRequests().anyRequest().authenticated()
-            .and().httpBasic();*/
+            .and().httpBasic();
 	
 		}
 		

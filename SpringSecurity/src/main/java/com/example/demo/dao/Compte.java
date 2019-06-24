@@ -1,5 +1,6 @@
 package com.example.demo.dao;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collection;
@@ -32,7 +33,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @EntityListeners(AuditingEntityListener.class)
-public class Compte extends Auditable implements UserDetails  {
+public class Compte extends Auditable implements UserDetails, Serializable  {
 	
 	private static final long serialVersionUID = 1L;
 	
