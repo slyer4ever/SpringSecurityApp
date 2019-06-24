@@ -26,7 +26,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		protected void configure(HttpSecurity http) throws Exception {
 			
 		
-		
+		/*
+			 http.httpBasic()
+	            .and()
+	            .authorizeRequests()
+	            .antMatchers("/**")
+	            .authenticated(); // Use Basic authentication
+			
+			
 			http.csrf().disable().authorizeRequests()
 		.antMatchers("/*").authenticated()
 		.antMatchers("/**").access("hasRole('ROLE_ADMIN')")
@@ -34,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/**").hasAnyAuthority("ADMIN","USER")
 		//.antMatchers("/**").permitAll()
 		.and()
-		.formLogin();
+		.formLogin();*/
 			
 		/*	http.csrf().disable()
             .authorizeRequests().anyRequest().authenticated()
@@ -55,4 +62,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 							}
 							});
 		}
+		
+		
+		/*
+		
+		@Override
+	    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+	        auth
+	            .inMemoryAuthentication()
+	            .withUser("NHA").password("123").roles("ADMIN");
+	}
+		
+		*/
+		
 }

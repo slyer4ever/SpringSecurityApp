@@ -10,6 +10,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.example.demo.Repository.CompteRepository;
@@ -42,6 +45,16 @@ public class SpringSecurityApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
+		
+		
+		
+		
+       
+		
+		
+		
+		
+		//::-------------------------
 		 final Logger logger = LoggerFactory.getLogger(this.getClass());
 		
 		Etudiant e1=new Etudiant(null,"Nidal","Hanif",LocalDate.now(),null);
@@ -60,6 +73,18 @@ public class SpringSecurityApplication implements CommandLineRunner {
 		
 		Compte compte3=new Compte("AAA","123","USER",null);
 		compte3.setPassword(bCryptPasswordEncoder.encode(compte3.getPassword()));
+		
+//---------------Authentification
+		
+		
+		
+	
+	        
+	        
+		
+		
+		
+//---------- DataBase Load		
 		
 		
 		

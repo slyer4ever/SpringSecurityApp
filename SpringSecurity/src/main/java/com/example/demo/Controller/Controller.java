@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.AspectJ.TrackTime;
 import com.example.demo.Exception.EtudiantNotFound;
+import com.example.demo.Repository.CompteRepository;
 import com.example.demo.Repository.CoursesRepository;
 import com.example.demo.Repository.EtudiantRepository;
+import com.example.demo.dao.Compte;
 import com.example.demo.dao.Cours;
 import com.example.demo.dao.Etudiant;
 
@@ -33,6 +35,10 @@ public class Controller {
 	
 	@Autowired
 	EtudiantRepository etudiantRepository;
+	
+	
+	@Autowired
+	CompteRepository compteRepository;
 	
 	@Autowired
 	ServiceStudent serviceStudent;
@@ -99,6 +105,25 @@ public class Controller {
 	
 	
 	
+	
+	@GetMapping("/comptes")
+	public List<Compte> findComptes()
+	{
+		return compteRepository.findAll();
+		
+	}
+	
+	
+	
+	@PostMapping(value="/UpdateAccount")
+	@ResponseStatus(code=HttpStatus.ACCEPTED)
+	public Compte UpdateAccount(@RequestBody Compte compte)
+	{
+		
+		
+		return compteRepository.save(compte);
+		
+	}
 	
 	
 	
